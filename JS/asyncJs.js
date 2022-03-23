@@ -1,17 +1,17 @@
 
-let result = []
-function fetchUserData(cb) {
-    setTimeout(() => {
-        result = [{ name: 'b', age: 18 }, { name: 'a', age: 18 }]
-        cb(result)
-    }, 1000)
-}
-function fetchCompanyData(cb) {
-    setTimeout(() => {
-        result = [{ companyName: 'google', address: "sdfs" }, { companyName: 'meta', address: "dsfsdf" }]
-        cb(result)
-    }, 2000)
-}
+// let result = []
+// function fetchUserData(cb) {
+//     setTimeout(() => {
+//         result = [{ name: 'b', age: 18 }, { name: 'a', age: 18 }]
+//         cb(result)
+//     }, 1000)
+// }
+// function fetchCompanyData(cb) {
+//     setTimeout(() => {
+//         result = [{ companyName: 'google', address: "sdfs" }, { companyName: 'meta', address: "dsfsdf" }]
+//         cb(result)
+//     }, 2000)
+// }
 
 // fetchUserData((userData) => {
 //     console.log("userData", userData)

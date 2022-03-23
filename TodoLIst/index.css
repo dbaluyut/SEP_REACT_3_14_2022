@@ -1,0 +1,66 @@
+/* CSS RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+button{
+    cursor: pointer;
+}
+
+
+.todolist{
+    width: 500px;
+    box-shadow:0 6px 20px 0 rgba(0,0,0,.19);
+}
+
+/* utils */
+.fixed-center{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.todolist__header{
+    background-color: aliceblue;
+    padding:20px;
+}
+
+.todolist__header__title{
+    text-align: center;
+}
+
+.input-bar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.input-bar__input{
+    padding:5px;
+    flex-grow: 1;
+}
+.input-bar__submit{
+    border:none;
+    outline:0;
+    padding:5px 15px;
+
+}
+
+.todolist__content{
+    list-style-type:none;
+    height: 400px;
+    overflow: scroll;
+}
+.todolist__content__row{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0px 20px;
+}
+.todolist__content .todolist__content__row:nth-child(odd) {
+    background: #f9f9f9;
+}
