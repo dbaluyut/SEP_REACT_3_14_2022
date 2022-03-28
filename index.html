@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e4b92deaf0.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
+    <title>Artist Search</title>
+  </head>
+  <body>
+    <nav class="search-bar">
+      <form class="search-bar_input-container">
+        <input
+          required
+          class="search-bar_input"
+          type="text"
+          placeholder="Search..."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </form>
+    </nav>
+    <section class="search-results">
+      <h3 class="results-status">Search Albums by ArtistName</h3>
+      <div class="search-results_container"></div>
+    </section>
+    <script src="index.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+  </body>
+</html>
