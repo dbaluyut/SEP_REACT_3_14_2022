@@ -42,6 +42,8 @@ function makeSearchCard(artist) {
 }
 
 async function makeSearchResults(stringSearch) {
+  render('.loading-container', makeLoading())
+
   let searchResults = await search(stringSearch)
 
   let searchResultsHTML = searchResults.results
@@ -55,6 +57,8 @@ async function makeSearchResults(stringSearch) {
     domSel.resultsStatus,
     makeResultStatus(searchResults.resultCount, stringSearch)
   )
+
+  document.querySelector('.loading-container').remove()
 
   return searchResultsHTML
 }
