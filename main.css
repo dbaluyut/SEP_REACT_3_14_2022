@@ -1,0 +1,50 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.movie-cards_container {
+  display: flex;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.movie-carousel {
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(2, 177, 3, 1) 52%
+  );
+  width: min-content;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+}
+
+.movie-carousel button {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+
+.hide {
+  display: none;
+}
+
+.movie-card {
+  padding: 0.5rem;
+  color: white;
+}
+
+.movie-card * {
+  margin-bottom: 1rem;
+}
+
+.movie-card:hover {
+  outline: 1px solid white;
+}
