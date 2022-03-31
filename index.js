@@ -1,5 +1,7 @@
 // api search function
 let res = []
+let currentResultsIndex = 4
+let shownResults = []
 let searchTerm = 'lany'
 
 async function search(name) {
@@ -44,19 +46,20 @@ function makeSearchCard(artist) {
 async function makeSearchResults(stringSearch) {
   render('.loading-container', makeLoading())
 
-  let searchResults = await search(stringSearch)
+  res = await search(stringSearch)
+  console.dir(res)
 
-  let searchResultsHTML = searchResults.results
+  shownResults = res.results.slice(0, currentResultsIndex)
+
+  console.log(shownResults)
+
+  let searchResultsHTML = shownResults
     .map((item) => {
       return makeSearchCard(item)
     })
     .join('')
-  console.log(searchResults)
 
-  render(
-    domSel.resultsStatus,
-    makeResultStatus(searchResults.resultCount, stringSearch)
-  )
+  render(domSel.resultsStatus, makeResultStatus(res.resultCount, stringSearch))
 
   document.querySelector('.loading-container').remove()
 
@@ -81,7 +84,21 @@ document
   .querySelector('.search-bar_input-container')
   .addEventListener('submit', (e) => {
     e.preventDefault()
-    const val = document.querySelector('.search-bar_input').value
+    searchTerm = document.querySelector('.search-bar_input').value
 
-    render(domSel.searchResultsContainer, makeSearchResults(val))
+    render(domSel.searchResultsContainer, makeSearchResults(searchTerm))
   })
+
+document.querySelector('.load-more').addEventListener('click', () => {
+  currentResultsIndex += 4
+  shownResults = res.results.slice(0, currentResultsIndex)
+  console.log(shownResults)
+
+  let newHTML = shownResults
+    .map((item) => {
+      return makeSearchCard(item)
+    })
+    .join('')
+
+  render(domSel.searchResultsContainer, newHTML)
+})
