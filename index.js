@@ -61,7 +61,7 @@ async function makeSearchResults(stringSearch) {
 
   render(domSel.resultsStatus, makeResultStatus(res.resultCount, stringSearch))
 
-  document.querySelector('.loading-container').remove()
+  document.querySelector('.loader').remove()
 
   return searchResultsHTML
 }
@@ -85,7 +85,7 @@ document
   .addEventListener('submit', (e) => {
     e.preventDefault()
     searchTerm = document.querySelector('.search-bar_input').value
-
+    currentResultsIndex = 4
     render(domSel.searchResultsContainer, makeSearchResults(searchTerm))
   })
 
@@ -102,3 +102,5 @@ document.querySelector('.load-more').addEventListener('click', () => {
 
   render(domSel.searchResultsContainer, newHTML)
 })
+
+//MVC
