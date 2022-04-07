@@ -1,16 +1,15 @@
+import $$ from './DBQuery.js'
+
 // api search function
 let res = []
 let currentResultsIndex = 4
 let shownResults = []
 let searchTerm = 'lany'
 
-async function search(name) {
-  await fetchJsonp(
-    `https://itunes.apple.com/search?term=${name}&media=music&entity=album&attribute=artistTerm&limit=200`
-  )
-    .then((res) => res.json())
-    .then((json) => (res = json))
-  return res
+function search(name) {
+  const searchUrl = `https://itunes.apple.com/search?term=${name}&media=music&entity=album&attribute=artistTerm&limit=200`
+
+  return $$.dbFetch(searchUrl)
 }
 
 // let searchResults = await search('lany')
@@ -32,7 +31,7 @@ function makeLoading() {
   `
 }
 
-document.querySelector(domSel.searchResultsContainer, makeLoading())
+// document.querySelector(domSel.searchResultsContainer, makeLoading())
 
 function makeSearchCard(artist) {
   return `
@@ -44,14 +43,10 @@ function makeSearchCard(artist) {
 }
 
 async function makeSearchResults(stringSearch) {
-  render('.loading-container', makeLoading())
-
+  $$('.loading-container').html(makeLoading())
   res = await search(stringSearch)
-  console.dir(res)
 
   shownResults = res.results.slice(0, currentResultsIndex)
-
-  console.log(shownResults)
 
   let searchResultsHTML = shownResults
     .map((item) => {
@@ -59,9 +54,8 @@ async function makeSearchResults(stringSearch) {
     })
     .join('')
 
-  render(domSel.resultsStatus, makeResultStatus(res.resultCount, stringSearch))
-
-  document.querySelector('.loader').remove()
+  $$(domSel.resultsStatus).html(makeResultStatus(res.resultCount, stringSearch))
+  $$('.loader').remove()
 
   return searchResultsHTML
 }
@@ -72,24 +66,19 @@ function makeResultStatus(count, str) {
   `
 }
 
-// render
-
-async function render(el, tmp) {
-  document.querySelector(el).innerHTML = await tmp
-}
-
 //addeventlistener
 
-document
-  .querySelector('.search-bar_input-container')
-  .addEventListener('submit', (e) => {
-    e.preventDefault()
-    searchTerm = document.querySelector('.search-bar_input').value
-    currentResultsIndex = 4
-    render(domSel.searchResultsContainer, makeSearchResults(searchTerm))
-  })
+$$('.search-bar_input-container').on('submit', async (e) => {
+  e.preventDefault()
+  $$(domSel.searchResultsContainer).html('')
+  searchTerm = $$('.search-bar_input').val()
+  currentResultsIndex = 4
+  // render(domSel.searchResultsContainer, makeSearchResults(searchTerm))
+  const searchResults = await makeSearchResults(searchTerm)
+  $$(domSel.searchResultsContainer).html(searchResults)
+})
 
-document.querySelector('.load-more').addEventListener('click', () => {
+$$('.load-more').on('click', () => {
   currentResultsIndex += 4
   shownResults = res.results.slice(0, currentResultsIndex)
   console.log(shownResults)
@@ -100,7 +89,5 @@ document.querySelector('.load-more').addEventListener('click', () => {
     })
     .join('')
 
-  render(domSel.searchResultsContainer, newHTML)
+  $$(domSel.searchResultsContainer).html(newHTML)
 })
-
-//MVC
