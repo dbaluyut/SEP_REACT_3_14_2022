@@ -8,12 +8,12 @@ let searchTerm = 'lany'
 
 function search(name) {
   const searchUrl = `https://itunes.apple.com/search?term=${name}&media=music&entity=album&attribute=artistTerm&limit=200`
+  console.log(searchUrl)
 
-  return $$.dbFetch(searchUrl)
+  const data = $$.dbFetch(searchUrl)
+
+  return data
 }
-
-// let searchResults = await search('lany')
-// console.log(searchResults.results[0])
 
 //dom selectors
 
@@ -75,6 +75,9 @@ $$('.search-bar_input-container').on('submit', async (e) => {
   currentResultsIndex = 4
   // render(domSel.searchResultsContainer, makeSearchResults(searchTerm))
   const searchResults = await makeSearchResults(searchTerm)
+  res.results.length > 0
+    ? $$('.load-more').removeClass('hide')
+    : $$('.load-more').addClass('hide')
   $$(domSel.searchResultsContainer).html(searchResults)
 })
 

@@ -35,6 +35,12 @@ class DBQuery {
     })
     return retVal
   }
+  addClass(classToAdd) {
+    this.els.forEach((el) => el.classList.add(classToAdd))
+  }
+  removeClass(classToRemove) {
+    this.els.forEach((el) => el.classList.remove(classToRemove))
+  }
 }
 
 const $$ = (sel) => new DBQuery(sel)
