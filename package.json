@@ -1,0 +1,35 @@
+{
+  "name": "db-boilerplate",
+  "version": "1.0.0",
+  "description": "babel, webpack, ESlint, prettier, SCSS, jest",
+  "main": "index.js",
+  "scripts": {
+    "build:babel": "babel src -d lib",
+    "build:webpack": "webpack --config webpack.config.js",
+    "build": "npm run build:babel && npm run build:webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbaluyut/SEP_REACT_3_14_2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbaluyut/SEP_REACT_3_14_2022/issues"
+  },
+  "homepage": "https://github.com/dbaluyut/SEP_REACT_3_14_2022#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "babel-loader": "^8.2.4",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
