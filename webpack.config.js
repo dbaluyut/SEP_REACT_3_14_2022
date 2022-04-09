@@ -20,6 +20,18 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
   },
   plugins: [
